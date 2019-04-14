@@ -11,10 +11,15 @@
 <button class="btn btn-primary" [disabled]="!allowServer" (click)="onCreateServer()" >Add server</button>
 <!-- <p [innerText]="allowServer"></p> -->
 <!-- directive -->
-<p *ngIf="serverCreated">the server was created {{serverName}}</p>
+<p *ngIf="serverCreated; else noServer">the server was created {{serverName}}</p>
 <div>
 <!-- string interpolation -->
 <p>{{ serverCreationStatus }}</p>
+<ng-template #noServer>
+  <p>No Server created</p>
+</ng-template>
+
   servers works!
+
   <app-server></app-server>
 </div>
