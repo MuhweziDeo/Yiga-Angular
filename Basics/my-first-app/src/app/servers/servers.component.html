@@ -9,7 +9,9 @@
 <!-- <p>{{serverName}}</p> -->
 <!-- property binding -->
 <button class="btn btn-primary" [disabled]="!allowServer" (click)="onCreateServer()" >Add server</button>
-<p [innerText]="allowServer"></p>
+<!-- <p [innerText]="allowServer"></p> -->
+<!-- directive -->
+<p *ngIf="serverCreated">the server was created {{serverName}}</p>
 <div>
 <!-- string interpolation -->
 <p>{{ serverCreationStatus }}</p>
