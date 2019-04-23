@@ -1,5 +1,5 @@
 import {Ingredient} from '../shared/ingredient.model';
-import {EventEmitter} from "@angular/core";
+import {EventEmitter} from '@angular/core';
 
 
 
@@ -13,6 +13,10 @@ export  class ShoppingListService {
   }
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
+    return this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+  addIngredients(ingredients: Ingredient[]) {
+    this.ingredients.push(...ingredients);
     return this.ingredientsChanged.emit(this.ingredients.slice());
   }
 }
