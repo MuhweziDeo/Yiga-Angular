@@ -1,37 +1,41 @@
-import { Recipe } from './recipes.model';
-import {EventEmitter, Injectable} from '@angular/core';
-import {Ingredient} from '../shared/ingredient.model';
+import { EventEmitter, Injectable } from '@angular/core';
+
+import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
-// injecting a service into a service
 export class RecipeService {
-  recipeSelected =  new EventEmitter<Recipe>();
-  private recipes: Recipe [] = [
-    new Recipe('dees', 'A new one',
-      'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' +
-      'avocado-cherry-tomatoes-chopping-board-1166419.jpg&fm=jpgΩ', [new Ingredient(
-        'Ingredient1', 4000
-      ), new Ingredient(
-        'Ingredient3', 40002
-      )]),
-    new Recipe('dee2', 'A new one 2', 'https://images.pexels.com/' +
-      'photos/1166419/pexels-photo-1166419.jpeg?cs=srgb&dl=' +
-      'avocado-cherry-tomatoes-chopping-board-1166419.jpg&fm=jpgΩ',
-      [new Ingredient(
-        'Ingredient3', 5000
-      ), new Ingredient(
-        'Ingredient4', 6000
-      )]
-    )
-  ];
-  constructor(private slService: ShoppingListService) {
+  recipeSelected = new EventEmitter<Recipe>();
 
-  }
+  private recipes: Recipe[] = [
+    new Recipe(
+      'Tasty Schnitzel',
+      'A super-tasty Schnitzel - just awesome!',
+      'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
+      [
+        new Ingredient('Meat', 1),
+        new Ingredient('French Fries', 20)
+      ]),
+    new Recipe('Big Fat Burger',
+      'What else you need to say?',
+      'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
+      [
+        new Ingredient('Buns', 2),
+        new Ingredient('Meat', 1)
+      ])
+  ];
+
+  constructor(private slService: ShoppingListService) {}
+
   getRecipes() {
-    // @ts-ignore
     return this.recipes.slice();
   }
+
+  getRecipe(index: number) {
+    return this.recipes[index];
+  }
+
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
   }
