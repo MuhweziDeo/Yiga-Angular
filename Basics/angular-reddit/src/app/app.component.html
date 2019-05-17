@@ -1,0 +1,30 @@
+<div>
+<form class="uilargeformsegment"> 
+  <h3 class="ui header">Add a Link</h3>
+
+<div class="field">
+<label for="title">Title:</label>
+
+<input name="title" id="title" #newtitle required> <!-- changed -->
+</div>
+
+<div class="field">
+<label for="link">Link:</label>
+<input name="link" id="link" #newlink> <!-- changed --> 
+</div>
+  <!-- added this button -->
+<button (click)="addArticle(newtitle, newlink)" class="ui positive right floated button">
+Submit link </button>
+<div *ngIf="message">
+	{{ message }}
+</div>
+</form>
+
+<div class="ui grid posts">
+ <app-article 
+ *ngFor="let article of sortedArticles()" 
+ [article]="article">
+ 	
+ </app-article>
+</div>
+</div>
